@@ -4,7 +4,8 @@ from baselines.a2c.utils import conv, fc, conv_to_fc, batch_to_seq, seq_to_batch
 from baselines.common.distributions import make_pdtype
 from baselines.common.input import observation_input
 
-from coinrun.config import Config
+# from coinrun.config import Config
+from coinrun.config_dqn import Config
 
 def impala_cnn(images, depths=[16, 32, 32]):
     """

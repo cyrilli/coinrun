@@ -8,7 +8,8 @@ import tensorflow as tf
 import numpy as np
 from coinrun import setup_utils
 import coinrun.main_utils as utils
-from coinrun.config import Config
+# from coinrun.config import Config
+from coinrun.config_dqn import Config
 from coinrun import policies, wrappers
 
 mpi_print = utils.mpi_print

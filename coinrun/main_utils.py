@@ -6,7 +6,8 @@ import numpy as np
 from mpi4py import MPI
 
 from baselines.common.vec_env.vec_frame_stack import VecFrameStack
-from coinrun.config import Config
+# from coinrun.config import Config
+from coinrun.config_dqn import Config
 from coinrun import setup_utils, wrappers
 
 import platform

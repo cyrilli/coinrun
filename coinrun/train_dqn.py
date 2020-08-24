@@ -84,7 +84,7 @@ class Scalarize:
     def __repr__(self):
         return f"<Scalarize venv={self._venv}>"
 
-def train(lr=1e-3, batch_size=64, network='cnn', total_timesteps=2.56e8, buffer_size=1e6, render = False, print_freq=10)
+def train(print_freq=10):
     args = setup_utils.setup_and_load()
 
     comm = MPI.COMM_WORLD
@@ -100,15 +100,15 @@ def train(lr=1e-3, batch_size=64, network='cnn', total_timesteps=2.56e8, buffer_
     env = Scalarize(main_utils.make_general_env(1, seed=rank))
     act = deepq.learn(
                     env,
-                    network=network,
-                    lr=lr,
-                    batch_size=batch_size,
-                    total_timesteps=total_timesteps,
-                    buffer_size=buffer_size,
+                    network=Config.ARCHITECTURE,
+                    lr=Config.LR,
+                    batch_size=Config.BATCH_SIZE,
+                    total_timesteps=Config.TOTAL_TIMESTEPS,
+                    buffer_size=Config.BUFFER_SIZE,
                     exploration_fraction=0.1,
                     exploration_final_eps=0.02,
                     print_freq=print_freq,
-                    render=render,
+                    render=Config.RENDER,
                     callback=None
                     )
     print("Saving model to dqn_model.pkl")

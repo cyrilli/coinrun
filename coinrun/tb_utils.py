@@ -1,6 +1,7 @@
 import tensorflow as tf
 from mpi4py import MPI
-from coinrun.config import Config
+# from coinrun.config import Config
+from coinrun.config_dqn import Config
 import numpy as np
 
 def clean_tb_dir():

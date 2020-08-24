@@ -2,7 +2,7 @@ from mpi4py import MPI
 import argparse
 import os
 
-class ConfigSingle(object):
+class ConfigSingle_(object):
     """
     A global config object that can be initialized from command line arguments or
     keyword arguments.
@@ -49,23 +49,18 @@ class ConfigSingle(object):
         # PAINT_VEL_INFO = -1 uses smart defaulting -- will default to 1 if GAME_TYPE is 'standard' (CoinRun), 0 otherwise
         type_keys.append(('pvi', 'paint_vel_info', int, -1, True))
 
-        # Should batch normalization be used after each convolutional layer
-        # 1/0 means True/False
-        # This code only supports training-mode batch normalization (normalizing with statistics of the current batch).
-        # In practice, we found this is nearly as effective as tracking the moving average of the statistics.
-        # NOTE: Only applies to IMPALA and IMPALA-Large architectures
-        type_keys.append(('norm', 'use_batch_norm', int, 0, True))
 
-        # What dropout probability to use after each convolutional layer
-        # NOTE: Only applies to IMPALA and IMPALA-Large architectures
-        type_keys.append(('dropout', 'dropout', float, 0.0, True))
+        # The convolutional architecture to use
+        # One of {'nature', 'impala', 'impalalarge'}
+        type_keys.append(('arch', 'architecture', str, 'cnn', True))
+        type_keys.append(('lr', 'lr', float, 1e-4))
+        type_keys.append(('batch_size', 'batch_size', int, 64))
+        type_keys.append(('total_timesteps', 'total_timesteps', int, 2000000))
+        type_keys.append(('buffer_size', 'buffer_size', int, 1000000))
 
         # Should data augmentation be used
         # 1/0 means True/False
         type_keys.append(('uda', 'use_data_augmentation', int, 0))
-
-        # The l2 penalty to use during training
-        type_keys.append(('l2', 'l2_weight', float, 0.0))
 
         # The probability the agent's action is replaced with a random action
         type_keys.append(('eps', 'epsilon_greedy', float, 0.0))
@@ -102,6 +97,8 @@ class ConfigSingle(object):
 
         # Use high resolution images for rendering
         bool_keys.append(('hres', 'is_high_res'))
+
+        bool_keys.append(('render', 'render'))
 
         self.RES_KEYS = []
 
@@ -261,4 +258,4 @@ class ConfigSingle(object):
 
         return args
 
-Config = ConfigSingle()
+Config = ConfigSingle_()
