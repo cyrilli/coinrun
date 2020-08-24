@@ -98,6 +98,9 @@ def train(print_freq=10):
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True # pylint: disable=E1101
     env = Scalarize(main_utils.make_general_env(1, seed=rank))
+    print("==================================")
+    print("Learning rate :{}, batch size: {}".format(Config.LR, Config.BATCH_SIZE))
+
     act = deepq.learn(
                     env,
                     network=Config.ARCHITECTURE,
@@ -108,6 +111,9 @@ def train(print_freq=10):
                     exploration_fraction=0.1,
                     exploration_final_eps=0.02,
                     print_freq=print_freq,
+                    checkpoint_freq=Config.CHECKPOINT_FREQ,
+                    checkpoint_path="./saved_models/{}".format(Config.RUN_ID),
+                    load_path=None,#"~/Codes/coinrun/saved_model/{}/model".format(Config.RUN_ID),
                     render=Config.RENDER,
                     callback=None
                     )

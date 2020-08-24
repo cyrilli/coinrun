@@ -249,13 +249,14 @@ def learn(env,
         model_file = os.path.join(td, "model")
         model_saved = False
 
-        if tf.train.latest_checkpoint(td) is not None:
+        # if tf.train.latest_checkpoint(td) is not None:
+        if os.path.exists(model_file):
             load_variables(model_file)
-            logger.log('Loaded model from {}'.format(model_file))
+            logger.log('ckpt_pth: Loaded model from {}'.format(model_file))
             model_saved = True
         elif load_path is not None:
             load_variables(load_path)
-            logger.log('Loaded model from {}'.format(load_path))
+            logger.log('load_path: Loaded model from {}'.format(load_path))
 
 
         for t in range(total_timesteps):
@@ -320,7 +321,7 @@ def learn(env,
                 logger.dump_tabular()
 
             if (checkpoint_freq is not None and t > learning_starts and
-                    num_episodes > 100 and t % checkpoint_freq == 0):
+                    num_episodes > 0 and t % checkpoint_freq == 0):
                 if saved_mean_reward is None or mean_100ep_reward > saved_mean_reward:
                     if print_freq is not None:
                         logger.log("Saving model due to mean reward increase: {} -> {}".format(

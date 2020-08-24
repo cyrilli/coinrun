@@ -56,7 +56,10 @@ class ConfigSingle_(object):
         type_keys.append(('lr', 'lr', float, 1e-4))
         type_keys.append(('batch_size', 'batch_size', int, 64))
         type_keys.append(('total_timesteps', 'total_timesteps', int, 2000000))
-        type_keys.append(('buffer_size', 'buffer_size', int, 1000000))
+        type_keys.append(('buffer_size', 'buffer_size', int, 10000))
+
+        # Overwrite the latest save file after this many updates
+        type_keys.append(('ckpt_freq', 'checkpoint_freq', int, 100000))
 
         # Should data augmentation be used
         # 1/0 means True/False
@@ -72,9 +75,6 @@ class ConfigSingle_(object):
         # Should observations be transformed to grayscale
         # 1/0 means True/False
         type_keys.append(('ubw', 'use_black_white', int, 0, True))
-
-        # Overwrite the latest save file after this many updates
-        type_keys.append(('si', 'save_interval', int, 10))
 
         # The number of evaluation environments to use
         type_keys.append(('num-eval', 'num_eval', int, 20, True))
