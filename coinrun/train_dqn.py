@@ -6,7 +6,7 @@ import tensorflow as tf
 from baselines.common import set_global_seeds
 import coinrun.main_utils as main_utils
 from coinrun import setup_utils, policies, wrappers
-from coinrun.config import Config
+from coinrun.config_dqn import Config
 import numpy as np
 import gym
 
@@ -84,30 +84,35 @@ class Scalarize:
     def __repr__(self):
         return f"<Scalarize venv={self._venv}>"
 
-args = setup_utils.setup_and_load()
+def train(lr=1e-3, batch_size=64, network='cnn', total_timesteps=2.56e8, buffer_size=1e6, render = False, print_freq=10)
+    args = setup_utils.setup_and_load()
 
-comm = MPI.COMM_WORLD
-rank = comm.Get_rank()
+    comm = MPI.COMM_WORLD
+    rank = comm.Get_rank()
 
-seed = int(time.time()) % 10000
-set_global_seeds(seed * 100 + rank)
+    seed = int(time.time()) % 10000
+    set_global_seeds(seed * 100 + rank)
 
-main_utils.setup_mpi_gpus()
+    main_utils.setup_mpi_gpus()
 
-config = tf.ConfigProto()
-config.gpu_options.allow_growth = True # pylint: disable=E1101
-env = Scalarize(main_utils.make_general_env(1, seed=rank))
-act = deepq.learn(
-                  env,
-                  network='cnn',
-                  lr=1e-3,
-                  batch_size=64,
-                  total_timesteps=256000000,
-                  buffer_size=1000000,
-                  exploration_fraction=0.1,
-                  exploration_final_eps=0.02,
-                  print_freq=10,
-                  callback=None
-                )
-print("Saving model to dqn_model.pkl")
-act.save("dqn_model.pkl")
+    config = tf.ConfigProto()
+    config.gpu_options.allow_growth = True # pylint: disable=E1101
+    env = Scalarize(main_utils.make_general_env(1, seed=rank))
+    act = deepq.learn(
+                    env,
+                    network=network,
+                    lr=lr,
+                    batch_size=batch_size,
+                    total_timesteps=total_timesteps,
+                    buffer_size=buffer_size,
+                    exploration_fraction=0.1,
+                    exploration_final_eps=0.02,
+                    print_freq=print_freq,
+                    render=render,
+                    callback=None
+                    )
+    print("Saving model to dqn_model.pkl")
+    act.save("dqn_model.pkl")
+
+if __name__ == '__main__':
+    train()

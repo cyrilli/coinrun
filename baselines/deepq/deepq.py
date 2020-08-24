@@ -116,6 +116,7 @@ def learn(env,
           param_noise=False,
           callback=None,
           load_path=None,
+          render=False,
           **network_kwargs
             ):
     """Train a deepq model.
@@ -258,6 +259,8 @@ def learn(env,
 
 
         for t in range(total_timesteps):
+            if render:
+                env.render()
             if callback is not None:
                 if callback(locals(), globals()):
                     break
