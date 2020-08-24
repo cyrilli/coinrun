@@ -38,13 +38,12 @@ def train(print_freq=10):
                     exploration_final_eps=0.02,
                     print_freq=print_freq,
                     checkpoint_freq=Config.CHECKPOINT_FREQ,
-                    checkpoint_path="./saved_models/{}".format(Config.RUN_ID),
-                    load_path=None,#"~/Codes/coinrun/saved_model/{}/model".format(Config.RUN_ID),
+                    checkpoint_path="./ckpts/{}".format(Config.RUN_ID),
                     render=Config.RENDER,
                     callback=None
                     )
-    print("Saving model to dqn_model.pkl")
-    act.save("dqn_model.pkl")
+    print("Saving model to ./saved_models")
+    act.save("./saved_models/{}.pkl".format(Config.RUN_ID))
 
 if __name__ == '__main__':
     train()
