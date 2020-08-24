@@ -31,7 +31,7 @@ def main():
         load_path="dqn_model.pkl"
     )
 
-    num_episodes = 1
+    num_episodes = 100
     # while True:
     for i in range(num_episodes):
         obs, done = env.reset(), False
