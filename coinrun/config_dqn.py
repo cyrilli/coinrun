@@ -59,7 +59,7 @@ class ConfigSingle_(object):
         type_keys.append(('buffer_size', 'buffer_size', int, 10000))
 
         # Overwrite the latest save file after this many updates
-        type_keys.append(('ckpt_freq', 'checkpoint_freq', int, 100000))
+        type_keys.append(('ckpt_freq', 'checkpoint_freq', int, 10))
 
         # Should data augmentation be used
         # 1/0 means True/False
