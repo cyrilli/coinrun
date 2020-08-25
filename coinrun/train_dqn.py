@@ -29,7 +29,10 @@ def train():
 
     act = deepq.learn(
                     env,
-                    network=Config.ARCHITECTURE,
+                    # network=Config.ARCHITECTURE,
+                    network="conv_only",
+                    convs=[(32, 8, 4), (64, 4, 2), (64, 3, 1)],
+                    hiddens=[256],
                     lr=Config.LR,
                     batch_size=Config.BATCH_SIZE,
                     gamma=0.99,
