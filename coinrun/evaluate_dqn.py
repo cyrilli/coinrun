@@ -33,6 +33,7 @@ def main():
 
     num_episodes = 100
     # while True:
+    episode_rew_ls = []
     for i in range(num_episodes):
         obs, done = env.reset(), False
         episode_rew = 0
@@ -41,7 +42,8 @@ def main():
                 env.render()
             obs, rew, done, _ = env.step(act(obs[None])[0])
             episode_rew += rew
+        episode_rew_ls.append(episode_rew)
         print("Episode reward", episode_rew)
-
+    print("Avg episode reward", np.mean(episode_rew_ls))
 if __name__ == '__main__':
     main()
