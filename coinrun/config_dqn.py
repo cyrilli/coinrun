@@ -54,7 +54,7 @@ class ConfigSingle_(object):
         # One of {'nature', 'impala', 'impalalarge'}
         type_keys.append(('arch', 'architecture', str, 'cnn', True))
         type_keys.append(('lr', 'lr', float, 1e-4))
-        type_keys.append(('batch_size', 'batch_size', int, 64))
+        type_keys.append(('batch_size', 'batch_size', int, 32))
         type_keys.append(('total_timesteps', 'total_timesteps', int, 10000000))
         type_keys.append(('buffer_size', 'buffer_size', int, 1000000))
 

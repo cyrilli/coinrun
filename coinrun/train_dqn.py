@@ -10,7 +10,7 @@ from coinrun.config_dqn import Config
 import numpy as np
 import gym
 
-def train(print_freq=10):
+def train():
     args = setup_utils.setup_and_load()
 
     comm = MPI.COMM_WORLD
@@ -32,15 +32,22 @@ def train(print_freq=10):
                     network=Config.ARCHITECTURE,
                     lr=Config.LR,
                     batch_size=Config.BATCH_SIZE,
+                    gamma=0.99,
                     total_timesteps=Config.TOTAL_TIMESTEPS,
                     buffer_size=Config.BUFFER_SIZE,
                     exploration_fraction=0.1,
                     exploration_final_eps=0.02,
-                    print_freq=print_freq,
+                    print_freq=10,
                     checkpoint_freq=Config.CHECKPOINT_FREQ,
                     checkpoint_path="./ckpts/{}".format(Config.RUN_ID),
                     render=Config.RENDER,
                     callback=None
+
+                    exploration_fraction=0.1,
+                    exploration_final_eps=0.01,
+                    train_freq=4,
+                    learning_starts=10000,
+                    target_network_update_freq=1000
                     )
     print("Saving model to ./saved_models")
     act.save("./saved_models/{}.pkl".format(Config.RUN_ID))
