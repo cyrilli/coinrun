@@ -206,7 +206,7 @@ def learn(env,
         num_actions=env.action_space.n,
         # optimizer=tf.train.AdamOptimizer(learning_rate=lr),
         # optimizer=tf.train.GradientDescentOptimizer(learning_rate=lr),
-        optimizer=tf.train.RMSPropOptimizer(learning_rate=lr, decay=0.99)
+        optimizer=tf.train.RMSPropOptimizer(learning_rate=lr, decay=0.99),
         gamma=gamma,
         grad_norm_clipping=10,
         param_noise=param_noise

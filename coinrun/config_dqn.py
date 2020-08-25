@@ -56,7 +56,7 @@ class ConfigSingle_(object):
         type_keys.append(('lr', 'lr', float, 1e-4))
         type_keys.append(('batch_size', 'batch_size', int, 32))
         type_keys.append(('total_timesteps', 'total_timesteps', int, 10000000))
-        type_keys.append(('buffer_size', 'buffer_size', int, 1000000))
+        type_keys.append(('buffer_size', 'buffer_size', int, 10000))
 
         # Overwrite the latest save file after this many updates
         type_keys.append(('ckpt_freq', 'checkpoint_freq', int, 10))

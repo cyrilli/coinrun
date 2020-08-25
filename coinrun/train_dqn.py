@@ -35,8 +35,6 @@ def train():
                     gamma=0.99,
                     total_timesteps=Config.TOTAL_TIMESTEPS,
                     buffer_size=Config.BUFFER_SIZE,
-                    exploration_fraction=0.1,
-                    exploration_final_eps=0.02,
                     print_freq=10,
                     checkpoint_freq=Config.CHECKPOINT_FREQ,
                     checkpoint_path="./ckpts/{}".format(Config.RUN_ID),
