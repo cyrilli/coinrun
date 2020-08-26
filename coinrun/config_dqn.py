@@ -23,6 +23,8 @@ class ConfigSingle_(object):
         # The runid, used to determine the name for save files.
         type_keys.append(('runid', 'run_id', str, 'tmp'))
 
+        type_keys.append(('save_path', 'save_path', str, '.'))
+
         # The runid whose parameters and settings you want to load.
         type_keys.append(('resid', 'restore_id', str, None))
 

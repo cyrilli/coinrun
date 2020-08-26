@@ -40,7 +40,7 @@ def train():
                     buffer_size=Config.BUFFER_SIZE,
                     print_freq=10,
                     checkpoint_freq=Config.CHECKPOINT_FREQ,
-                    checkpoint_path="./ckpts/{}".format(Config.RUN_ID),
+                    checkpoint_path="{}/ckpts/{}".format(Config.SAVE_PATH, Config.RUN_ID),
                     render=Config.RENDER,
                     callback=None,
                     exploration_fraction=0.1,
@@ -49,8 +49,8 @@ def train():
                     learning_starts=10000,
                     target_network_update_freq=1000
                     )
-    print("Saving model to ./saved_models")
-    act.save("./saved_models/{}.pkl".format(Config.RUN_ID))
+    print("Saving model to {}/saved_models".format(Config.SAVE_PATH))
+    act.save("{}/saved_models/{}.pkl".format(Config.SAVE_PATH, Config.RUN_ID))
 
 if __name__ == '__main__':
     train()
