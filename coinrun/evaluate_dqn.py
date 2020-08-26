@@ -24,6 +24,8 @@ def main():
     config = tf.ConfigProto()
     config.gpu_options.allow_growth = True # pylint: disable=E1101
     env = main_utils.Scalarize(main_utils.make_general_env(1, seed=rank))
+    print("load path:")
+    print("{}/saved_models/{}.pkl".format(Config.SAVE_PATH, Config.RUN_ID))
     act = deepq.learn(
         env,
         network=Config.ARCHITECTURE,

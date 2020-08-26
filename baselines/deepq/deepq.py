@@ -260,7 +260,6 @@ def learn(env,
             load_variables(load_path)
             logger.log('load_path: Loaded model from {}'.format(load_path))
 
-
         for t in range(total_timesteps):
             if render:
                 env.render()
