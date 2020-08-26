@@ -28,7 +28,9 @@ def main():
     print("{}/saved_models/{}.pkl".format(Config.SAVE_PATH, Config.RUN_ID))
     act = deepq.learn(
         env,
-        network=Config.ARCHITECTURE,
+        network="conv_only",
+        convs=[(32, 8, 4), (64, 4, 2), (64, 3, 1)],
+        hiddens=[256],
         total_timesteps=0,
         load_path="{}/saved_models/{}.pkl".format(Config.SAVE_PATH, Config.RUN_ID)
     )
