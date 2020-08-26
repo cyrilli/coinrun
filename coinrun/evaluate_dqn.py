@@ -35,7 +35,7 @@ def main():
         load_path="{}/saved_models/{}.pkl".format(Config.SAVE_PATH, Config.RUN_ID)
     )
 
-    num_episodes = 100
+    num_episodes = 500
     # while True:
     episode_rew_ls = []
     for i in range(num_episodes):
@@ -49,5 +49,6 @@ def main():
         episode_rew_ls.append(episode_rew)
         print("Episode reward", episode_rew)
     print("Avg episode reward", np.mean(episode_rew_ls))
+    print("Var episode reward", np.std(episode_rew_ls))
 if __name__ == '__main__':
     main()
