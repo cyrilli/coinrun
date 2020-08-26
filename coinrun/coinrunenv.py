@@ -17,8 +17,8 @@ import numpy.ctypeslib as npct
 from baselines.common.vec_env import VecEnv
 from baselines import logger
 
-from coinrun.config import Config
-# from coinrun.config_dqn import Config
+# from coinrun.config import Config
+from coinrun.config_dqn import Config
 
 from mpi4py import MPI
 from baselines.common import mpi_util

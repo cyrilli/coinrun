@@ -1,5 +1,5 @@
-from coinrun.config import Config
-# from coinrun.config_dqn import Config
+# from coinrun.config import Config
+from coinrun.config_dqn import Config
 import os
 import joblib
 
