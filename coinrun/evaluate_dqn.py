@@ -28,7 +28,7 @@ def main():
         env,
         network=Config.ARCHITECTURE,
         total_timesteps=0,
-        load_path="./saved_models/{}.pkl".format(Config.RUN_ID)
+        load_path="{}/saved_models/{}.pkl".format(Config.SAVE_PATH, Config.RUN_ID)
     )
 
     num_episodes = 100
