@@ -53,7 +53,7 @@ def train():
     act = deepq.learn(
                     env,
                     # network=Config.ARCHITECTURE,
-                    network="conv_only",
+                    network="impala_cnn",
                     convs=[(32, 8, 4), (64, 4, 2), (64, 3, 1)],
                     hiddens=[256],
                     lr=Config.LR,
