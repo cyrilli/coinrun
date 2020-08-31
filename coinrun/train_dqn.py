@@ -27,6 +27,29 @@ def train():
     print("==================================")
     print("Learning rate :{}, batch size: {}".format(Config.LR, Config.BATCH_SIZE))
 
+    # act = deepq.learn(
+    #                 env,
+    #                 # network=Config.ARCHITECTURE,
+    #                 network="conv_only",
+    #                 convs=[(32, 8, 4), (64, 4, 2), (64, 3, 1)],
+    #                 hiddens=[256],
+    #                 lr=Config.LR,
+    #                 batch_size=Config.BATCH_SIZE,
+    #                 gamma=0.99,
+    #                 total_timesteps=Config.TOTAL_TIMESTEPS,
+    #                 buffer_size=Config.BUFFER_SIZE,
+    #                 print_freq=10,
+    #                 checkpoint_freq=Config.CHECKPOINT_FREQ,
+    #                 checkpoint_path="{}/ckpts/{}".format(Config.SAVE_PATH, Config.RUN_ID),
+    #                 render=Config.RENDER,
+    #                 callback=None,
+    #                 exploration_fraction=1.0,
+    #                 exploration_final_eps=0.1,
+    #                 prioritized_replay=True,
+    #                 train_freq=4,
+    #                 learning_starts=10000,
+    #                 target_network_update_freq=1000
+    #                 )
     act = deepq.learn(
                     env,
                     # network=Config.ARCHITECTURE,
@@ -43,7 +66,7 @@ def train():
                     checkpoint_path="{}/ckpts/{}".format(Config.SAVE_PATH, Config.RUN_ID),
                     render=Config.RENDER,
                     callback=None,
-                    exploration_fraction=1.0,
+                    exploration_fraction=0.6,
                     exploration_final_eps=0.1,
                     prioritized_replay=True,
                     train_freq=4,
