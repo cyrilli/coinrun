@@ -41,7 +41,7 @@ def train():
                     print_freq=10,
                     checkpoint_freq=Config.CHECKPOINT_FREQ,
                     checkpoint_path="{}/ckpts/{}".format(Config.SAVE_PATH, Config.RUN_ID),
-                    render=Config.RENDER,
+                    # render=Config.RENDER,
                     callback=None,
                     exploration_fraction=0.1,
                     exploration_final_eps=0.01,
